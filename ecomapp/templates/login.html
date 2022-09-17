@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+  </head>
+  <body>
+
+    <!--Navbar-->
+
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand text-warning" href="{% url 'welcome_page' %}">Dkart</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="{% url 'welcome_page'%}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'welcome_page' %}">Trending Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="{% url 'mobile_page' %}">Mobiles</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="{% url 'fashion_page' %}">Fashion</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!--Navbar End-->
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% for message in messages %}
+            <h5>
+                <div class="alert alert-danger mt-5">
+                    {{ message }}
+                </div>
+            </h5>
+                {% endfor %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+      <div class="row" style="padding-top: 47px;">
+        <div class="col-6" style="padding-left: 58px;">
+            <img src="https://st.depositphotos.com/1000260/1604/i/450/depositphotos_16048415-stock-photo-happy-family-with-children.jpg" alt="">
+        </div>
+        <div class="col-6" style="padding-top: 128px;padding-inline: 200px;">
+            
+            <form method="post" class="post-form" action="{% url 'login' %}">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control">     
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <p>No Account ? <a href="{% url 'signup_page' %}" style="text-decoration: none;">Sign up</a> Here</p>
+                <button type="submit" class="btn btn-primary">Login</button>
+            
+            </div>
+              
+              <!-- End Example Code -->
+    
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
